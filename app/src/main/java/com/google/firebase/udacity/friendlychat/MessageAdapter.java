@@ -29,6 +29,9 @@ public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
 
         FriendlyMessage message = getItem(position);
 
+
+
+
         boolean isPhoto = message.getPhotoUrl() != null;
         if (isPhoto) {
             messageTextView.setVisibility(View.GONE);
@@ -45,4 +48,5 @@ public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
 
         return convertView;
     }
+
 }
