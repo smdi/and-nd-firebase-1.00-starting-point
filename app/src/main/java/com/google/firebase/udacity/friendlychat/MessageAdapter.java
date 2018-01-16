@@ -13,6 +13,10 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
+
+
+
+
     public MessageAdapter(Context context, int resource, List<FriendlyMessage> objects) {
         super(context, resource, objects);
     }
@@ -28,8 +32,6 @@ public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
         TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
 
         FriendlyMessage message = getItem(position);
-
-
 
 
         boolean isPhoto = message.getPhotoUrl() != null;
@@ -48,5 +50,4 @@ public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
 
         return convertView;
     }
-
 }

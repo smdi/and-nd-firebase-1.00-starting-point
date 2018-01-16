@@ -34,6 +34,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -85,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
 
     private String mUsername;
 
+    private boolean change = true;
+    private ImageView photoImageView,photoImageView1;
+
     private String uri ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mUsername = ANONYMOUS;
-
-
 
         firebaseDatabase =FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -115,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         List<FriendlyMessage> friendlyMessages = new ArrayList<>();
         mMessageAdapter = new MessageAdapter(this, R.layout.item_message, friendlyMessages);
         mMessageListView.setAdapter(mMessageAdapter);
+
+
 
 
         // Initialize progress bar
@@ -245,6 +249,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public  void changeImage()
+    {
+
+        if(change){
+
+            photoImageView.setVisibility(View.INVISIBLE);
+            photoImageView1.setVisibility(View.VISIBLE);
+            change =false;
+        }
+        else {
+
+            photoImageView.setVisibility(View.VISIBLE);
+            photoImageView1.setVisibility(View.INVISIBLE);
+            change = true;
+        }
+
+
+    }
+
     private void onSignedIn(String displayName) {
         mUsername = displayName;
        attchDatabaseListener();
@@ -307,7 +331,9 @@ public class MainActivity extends AppCompatActivity {
 
                     FriendlyMessage friendlyMessage = dataSnapshot.getValue(FriendlyMessage.class);
                     mMessageAdapter.add(friendlyMessage);
+
                 }
+
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
